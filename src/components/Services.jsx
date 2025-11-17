@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function Services(){
   const items = [
     {
@@ -25,16 +27,39 @@ export default function Services(){
   return (
     <section id="servicios" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl font-black tracking-tight">Programas y servicios</h2>
-        <p className="mt-3 text-gray-600 max-w-prose">Entrenamientos diseñados para sacar tu mejor versión en pista.</p>
+        <motion.h2
+          className="text-3xl sm:text-4xl font-black tracking-tight"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.5 }}
+        >
+          Programas y servicios
+        </motion.h2>
+        <motion.p
+          className="mt-3 text-gray-600 max-w-prose"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Entrenamientos diseñados para sacar tu mejor versión en pista.
+        </motion.p>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((it) => (
-            <div key={it.title} className="group rounded-2xl border border-black/10 p-6 bg-gradient-to-br from-white to-emerald-50/30 hover:from-emerald-50/60 hover:to-white transition-all shadow-sm hover:shadow">
+          {items.map((it, i) => (
+            <motion.div
+              key={it.title}
+              className="group rounded-2xl border border-black/10 p-6 bg-gradient-to-br from-white to-emerald-50/30 hover:from-emerald-50/60 hover:to-white transition-all shadow-sm hover:shadow hover:-translate-y-1"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.05 * i, ease: 'easeOut' }}
+            >
               <div className="text-3xl">{it.icon}</div>
               <h3 className="mt-3 font-bold text-lg">{it.title}</h3>
               <p className="mt-2 text-gray-600 text-sm">{it.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
