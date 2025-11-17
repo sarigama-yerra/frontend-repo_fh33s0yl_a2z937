@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion'
 import SafeSpline from './SafeSpline'
+import Parallax from './Parallax'
+import Tilt from './Tilt'
+import Magnetic from './Magnetic'
 
 export default function Hero() {
   const sceneUrl = "https://prod.spline.design/2wfa1yqzZVw3C0kb/scene.splinecode"
 
   return (
     <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24 bg-gradient-to-b from-white to-emerald-50">
-      <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
-      <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-lime-200/40 blur-3xl" />
+      <Parallax speed={0.15} className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
+      <Parallax speed={-0.2} className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-lime-200/40 blur-3xl" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 items-center">
         <motion.div
@@ -23,12 +26,16 @@ export default function Hero() {
             Academia especializada en todos los niveles. Clases individuales y grupales, preparación física y táctica, y programas para niños y adultos.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contacto" className="inline-flex items-center rounded-full bg-emerald-600 text-white px-6 py-3 font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-              Reserva una clase
-            </a>
-            <a href="#servicios" className="inline-flex items-center rounded-full bg-white text-gray-900 px-6 py-3 font-semibold shadow-sm ring-1 ring-black/10 hover:bg-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              Ver programas
-            </a>
+            <Magnetic>
+              <a href="#contacto" className="inline-flex items-center rounded-full bg-emerald-600 text-white px-6 py-3 font-semibold shadow-sm hover:shadow-md transition-all">
+                Reserva una clase
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href="#servicios" className="inline-flex items-center rounded-full bg-white text-gray-900 px-6 py-3 font-semibold shadow-sm ring-1 ring-black/10 hover:bg-gray-50 transition-all">
+                Ver programas
+              </a>
+            </Magnetic>
           </div>
           <div className="mt-10 flex items-center gap-6 text-sm text-gray-600">
             <div className="flex -space-x-2">
@@ -42,16 +49,19 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          className="relative h-[380px] sm:h-[480px] md:h-[560px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10 bg-white"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-          whileHover={{ scale: 1.01 }}
-        >
-          <SafeSpline scene={sceneUrl} />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-600/0 to-emerald-600/0" />
-        </motion.div>
+        <Tilt className="[transform-style:preserve-3d]">
+          <motion.div
+            className="relative h-[380px] sm:h-[480px] md:h-[560px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10 bg-white"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            whileHover={{ scale: 1.01 }}
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            <SafeSpline scene={sceneUrl} />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-600/0 to-emerald-600/0" />
+          </motion.div>
+        </Tilt>
       </div>
     </section>
   )
