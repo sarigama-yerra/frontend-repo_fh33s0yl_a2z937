@@ -1,6 +1,8 @@
-import Spline from '@splinetool/react-spline'
+import SafeSpline from './SafeSpline'
 
 export default function Hero() {
+  const sceneUrl = "https://prod.spline.design/2wfa1yqzZVw3C0kb/scene.splinecode"
+
   return (
     <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24 bg-gradient-to-b from-white to-emerald-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 items-center">
@@ -33,8 +35,7 @@ export default function Hero() {
         </div>
 
         <div className="relative h-[380px] sm:h-[480px] md:h-[560px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10 bg-white">
-          {/* Interactive 3D via Spline: Padel racket or balls scene */}
-          <Spline scene="https://prod.spline.design/2wfa1yqzZVw3C0kb/scene.splinecode" />
+          <SafeSpline scene={sceneUrl} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-600/0 to-emerald-600/0" />
         </div>
       </div>
